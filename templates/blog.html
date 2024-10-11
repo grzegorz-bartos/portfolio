@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- main area part start -->
+    <main>
+
+      <section class="content-box-area mt-4">
+        <div class="container">
+          <div class="row g-4">
+            {% include 'profile_card.html' %}
+            <div class="col-xl-8">
+              <div class="card content-box-card">
+                <div class="card-body portfolio-card">
+                  <div class="top-info">
+                    <div class="text">
+                      <h1 class="main-title">My Recent Article and Publications</h1>
+                      <p>{{ description }}</p>
+                    </div>
+                  </div>
+                  {% include 'blog-items.html' %}
+                  {% include 'pagination.html' %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- background shape area start -->
+      {% include 'background.html' %}
+      <!-- background shape area end -->
+    </main>
+    <!-- main area part end -->
+{% endblock %}

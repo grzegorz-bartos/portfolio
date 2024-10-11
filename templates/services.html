@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+    <!-- main area part start -->
+    <main>
+
+      <section class="content-box-area mt-4">
+        <div class="container">
+          <div class="row g-4">
+            {% include 'profile_card.html' %}
+            <div class="col-xl-8">
+              <div class="card content-box-card">
+                <div class="card-body">
+                  <div class="top-info">
+                    <div class="text">
+                      <h1 class="main-title">Services I <span>Offer</span></h1>
+                      <p>Transforming Ideas into Innovative Reality with my Expert
+                        <b>Backend development</b> Services!</p>
+                    </div>
+                    <div class="available-btn">
+                      {% if AVAILABILITY %}
+                        <span class="available"><i class="fas fa-circle"></i> Available For Hire</span>
+                      {% else %}
+                        <span class="unavailable"><i class="fas fa-circle"></i> Unavailable</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% include 'services-tiles.html' %}
+                  {% include 'working-with.html' %}
+
+                  {% include 'client-feedback.html' %}
+
+                  {% include 'awards.html' %}
+
+                  {% if 0 == 1 %}
+                  {% include 'FAQ.html' %}
+                  {% endif %}
+
+                  {% include 'work-together-slider.html' %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- background shape area start -->
+      {% include 'background.html' %}
+      <!-- background shape area end -->
+    </main>
+    <!-- main area part end -->
+{% endblock %}

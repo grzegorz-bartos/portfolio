@@ -1,0 +1,42 @@
+{% if client_opinions %}
+<div class="client-feedback">
+  <h2 class="main-common-title">Client feedback
+  </h2>
+  <div class="row client-feedback-slider">
+    {% for client_opinion in client_opinions %}
+    <div class="col-lg-6">
+      <div class="feedback-item">
+        <div class="feedback-top-info">
+          <div class="rating">
+            {% for star in client_opinion.stars_range %}
+            <i class="fas fa-star"></i>
+            {% endfor %}
+          </div>
+          {% if translate %}
+          <div class="website">
+            <a href="#">translate
+              <svg class="arrow-up" width="14" height="15" viewBox="0 0 14 15" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.91634 4.5835L4.08301 10.4168" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M4.66699 4.5835H9.91699V9.8335" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+          {% endif %}
+        </div>
+        <div class="details">
+          <p>
+            "{{ client_opinion.content }}"
+          </p>
+        </div>
+        <div class="designation">
+          <p><span>{{ client_opinion.name }}</span> - {{ client_opinion.occupation }}, Poland</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

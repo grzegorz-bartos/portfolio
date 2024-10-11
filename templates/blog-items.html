@@ -1,0 +1,28 @@
+{% load static %}
+<div class="article-publications article-area">
+  <div class="article-publications-main">
+    <div class="row">
+      {% for article in page_obj %}
+      <div class="col-xl-6 col-lg-4 col-md-6">
+        <div class="article-publications-item">
+          <div class="image">
+            <a href="/article/" class="d-block w-100">
+              <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
+            </a>
+            <a href="/blog/" class="tags">{{ article.category }}</a>
+          </div>
+          <div class="text">
+            <a href="/blog/" class="title">
+                {{ article.title }}
+            </a>
+            <ul class="list-unstyled">
+              <li>{{ article.read_length }} min read</li>
+              <li>{{ article.publication_date }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
