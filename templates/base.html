@@ -241,18 +241,18 @@
                       <h3 class="card-title">Certifications</h3>
                       <div class="work-experiance-main">
                         <ul class="work-experiance-slider list-unstyled">
-                          {% for work in work_experiences %}
+                          {% for certificate in certificates %}
                           <li>
                             <div class="date">
-                              <p>2021-2024</p>
+                              <p>{% if certificate.date_issued %}{{ certificate.date_issued }}{% else %}In progress{% endif %}</p>
                             </div>
                             <div class="info">
                               <div class="icon">
-                                <img src="{% static 'img/icons/adobe.svg' %}" alt="adobe">
+                                <img src="{{ certificate.icon.url }}" alt="{{ certificate.source }}">
                               </div>
                               <div class="text">
-                                <h4 class="title">Adobe</h4>
-                                <h6 class="subtitle">Senior UI UX Designer</h6>
+                                <h4 class="title">{{ certificate.source }}</h4>
+                                <h6 class="subtitle">{{ certificate.title }}</h6>
                               </div>
                             </div>
                           </li>
@@ -348,22 +348,7 @@
                             stroke-linejoin="round" />
                         </svg>
                       </a></h3>
-                    <div class="services-main mt-24">
-                      <div class="row g-4">
-                        {% for service in services_list %}
-                        <div class="col-md-3 col-sm-6 col-6">
-                          <div class="services-item text-center">
-                            <div class="image">
-                              <img src="{{ service.image.url }}" alt="{{ service.name }}">
-                            </div>
-                            <div class="text">
-                              <h3 class="title">{{ service.name }}</h3>
-                            </div>
-                          </div>
-                        </div>
-                        {% endfor %}
-                      </div>
-                    </div>
+                    {% include 'services-tiles.html' %}
                   </div>
                 </div>
               </div>

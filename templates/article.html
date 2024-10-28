@@ -15,9 +15,9 @@
                       <img src="{% static 'img/blog/blog-img-1.jpg" alt="blog-img-1" class="img-fluid w-100">
                     </div>
                     <ul class="list-unstyled article-tags">
-                      <li>15 min read</li>
-                      <li>Nov 6, 2023</li>
-                      <li>1.5k Views</li>
+                      <li>{{ article.read_length }}</li>
+                      <li>{{ article.publication_date }}</li>
+                      <li>{{ article.views }}</li>
                     </ul>
                     <div class="article-details-text">
                       <h3 class="main-title">Want To Upgrade Your Brain? Stop Doing 7 Things</h3>

@@ -724,7 +724,16 @@ p {
 .services-item .image {
 	background-color: var(--white);
 	border-radius: 8px;
-	padding: 25px 14px;
+	padding: 10px;
+	/* old padding 25px 14px */
+}
+
+.services-item .image .service-image{
+    width: 70px;
+    height: 70px;
+    margin: 5px auto;
+    display: block;
+	color: #4770FF;
 }
 
 .services-item .text .title {

@@ -9,8 +9,7 @@ def personal_information(request):
         "LINKEDIN": "https://www.linkedin.com/in/grzegorz-bartos/",
         "DISCORD": "https://discord.gg/Wj6hjPvPXC",
         "CLIENT_COUNT": 30,
-        "HAPPY_CLIENTS": 20,
-        "PROJECTS_COMPLETED": 5,
+        "PROJECTS_COMPLETED": 10,
     }
     return context
 

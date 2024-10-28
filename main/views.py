@@ -1,19 +1,22 @@
-from django.shortcuts import render
-from .models import (ExpertArea, Project, Service, WorkExperience, Article)
+from django.shortcuts import render, get_object_or_404
+from .models import (ExpertArea, Project, Service, Certificate, Article)
 from .utils import get_client_opinions
 from django.core.paginator import Paginator
 
 
 def home(request):
-    expert_areas = ExpertArea.objects.all()
-    work_experiences = WorkExperience.objects.all()[:10]
+    expert_areas = ExpertArea.objects.all()[:6]
+    certificates = Certificate.objects.all()[:10]
+    certificates = list(certificates)
+    if len(certificates) > 4:
+        certificates *= 2  # duplicate items for better scrolling animation
     projects = Project.objects.all()[:2]
     services_list = Service.objects.all()[:4]
     context = {
         'expert_areas': expert_areas,
-        'work_experiences': work_experiences,
+        'certificates': certificates,
         'projects': projects,
-        'services_list': services_list,
+        'services': services_list,
     }
     return render(request, 'base.html', context)
 
@@ -24,7 +27,8 @@ def about(request):
 
     context = {
         'brands': brands,
-        'client_opinions': client_opinions}
+        'client_opinions': client_opinions
+    }
     return render(request, 'about.html', context)
 
 
@@ -49,8 +53,29 @@ def portfolio(request):
     return render(request, 'portfolio.html', context)
 
 
-def portfolio_details(request):
-    return render(request, 'portfolio-details.html')
+def portfolio_details(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    additional_images = project.additional_images.all()[:2]
+    services_list = list(project.services.values_list('name', flat=True))
+
+    if len(services_list) > 1:
+        services_formatted = ', '.join(services_list[:-1]) + ', and ' + services_list[-1]
+    elif services_list:
+        services_formatted = services_list[0]
+    else:
+        services_formatted = None
+
+    previous_project = Project.objects.filter(id__lt=project.id).order_by('-id').first()
+    next_project = Project.objects.filter(id__gt=project.id).order_by('-id').first()
+
+    context = {
+        'project': project,
+        'additional_images': additional_images,
+        'services_formatted': services_formatted,
+        'previous_project': previous_project,
+        'next_project': next_project,
+    }
+    return render(request, 'portfolio-details.html', context)
 
 
 def blog(request):

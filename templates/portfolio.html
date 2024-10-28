@@ -33,11 +33,13 @@
                           </div>
                           <div class="text">
                             <div class="info">
-                              <a href="/portfolio-details/" class="title">{{ project.title }}</a>
-                              <p class="subtitle">{{ project.description }}</p>
+                              <a href="{% url 'portfolio_details' project.id %}" class="title">{{ project.title }}</a>
+                              {% if project.short_description %}
+                              <p class="subtitle">{{ project.short_description }}</p>
+                              {% endif %}
                             </div>
                             <div class="visite-btn">
-                              <a href="/portfolio-details/">Visit Site
+                              <a href="{{ project.website }}">Visit Site
                                 <svg class="arrow-up" width="14" height="15" viewBox="0 0 14 15" fill="none"
                                   xmlns="http://www.w3.org/2000/svg">
                                   <path d="M9.91634 4.5835L4.08301 10.4168" stroke-linecap="round"

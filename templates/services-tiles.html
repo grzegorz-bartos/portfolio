@@ -1,11 +1,13 @@
 {% load static %}
-<div class="services">
+<div class="{% if request.path == '/' %}services-main mt-24{% else %}services{% endif %}">
   <div class="row g-4">
     {% for service in services %}
     <div class="col-md-3 col-sm-6 col-6">
       <div class="services-item text-center">
         <div class="image">
-          <img src="{{ service.image.url }}" alt="{{ service.name }}">
+          {% if service.image %}
+          <img src="{% if service.image %}{{ service.image.url }}{% endif %}" class="service-image" alt="{{ service.name }}">
+          {% endif %}
         </div>
         <div class="text">
           <h3 class="title">{{ service.name }}</h3>
@@ -14,9 +16,4 @@
     </div>
     {% endfor %}
   </div>
-  {% if image %}
-  <div class="block-image">
-    <img src="{% static 'img/blog/blog-img-1.jpg' %}" alt="blog-img-1" class="img-fluid w-100">
-  </div>
-  {% endif %}
 </div>
