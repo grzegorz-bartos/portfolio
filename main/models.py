@@ -18,8 +18,8 @@ class WorkExperience(models.Model):
 
 class Certificate(models.Model):
     SOURCE_CHOICES = [
-        ('udemy', 'Udemy'),
-        ('other', 'Other (Specify)'),
+        ('Udemy', 'Udemy'),
+        ('Other', 'Other (Specify)'),
     ]
 
     title = models.CharField(max_length=30)

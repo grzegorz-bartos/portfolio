@@ -89,8 +89,12 @@ def blog(request):
     return render(request, 'blog.html', context)
 
 
-def article(request):
-    return render(request, 'article.html')
+def blog_article(request, article_id):
+    article = get_object_or_404(Article, id=article_id)
+    context = {
+        'article': article,
+    }
+    return render(request, 'article.html', context)
 
 
 def contact(request):
