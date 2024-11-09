@@ -49,7 +49,7 @@ class Project(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    short_description = models.CharField(max_length=40, blank=True, null=True)
+    short_description = models.CharField(max_length=80, blank=True, null=True)
     image = models.ImageField(
         upload_to='project_images',
         blank=True, null=True
