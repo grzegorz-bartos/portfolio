@@ -95,8 +95,8 @@ class Service(models.Model):
 
 class Article(models.Model):
     class ArticleCategory(models.TextChoices):
-        DEVELOPMENT = "DEVELOPMENT", "Development"
-        OTHER = "OTHER", "Other"
+        DEVELOPMENT = "Development"
+        OTHER = "Other"
 
     title = models.CharField(max_length=30)
     category = models.CharField(
@@ -113,7 +113,12 @@ class Article(models.Model):
     )
 
     content = models.TextField(blank=True, null=True)
+    tags = models.CharField(max_length=100, blank=True, null=True, help_text="Comma-separated list of tags")
     views = models.IntegerField(blank=True, null=True, default=0)
 
     def __str__(self):
         return self.title
+
+    def get_tags(self):
+        """Return tags as a list of strings."""
+        return self.tags.split(",") if self.tags else []
