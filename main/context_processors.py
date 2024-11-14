@@ -1,15 +1,27 @@
-from datetime import date
+# context_processors.py
+from .models import Profile
 
 
 def personal_information(request):
-    context = {
-        "YEARS_OF_EXPERIENCE": date.today().year - 2021,
-        "AVAILABILITY": True,
-        "GITHUB": "https://github.com/Grzegorz-Bartos",
-        "LINKEDIN": "https://www.linkedin.com/in/grzegorz-bartos/",
-        "DISCORD": "https://discord.gg/Wj6hjPvPXC",
-        "CLIENT_COUNT": 30,
-        "PROJECTS_COMPLETED": 10,
-    }
+    try:
+        profile = Profile.objects.get(id=1)  # Assuming you have a single profile entry
+        context = {
+            "YEARS_OF_EXPERIENCE": profile.years_of_experience,
+            "AVAILABILITY": profile.availability,
+            "GITHUB": profile.github,
+            "LINKEDIN": profile.linkedin,
+            "DISCORD": profile.discord,
+            "CLIENT_COUNT": profile.client_count,
+            "PROJECTS_COMPLETED": profile.projects_completed,
+        }
+    except Profile.DoesNotExist:
+        context = {
+            "YEARS_OF_EXPERIENCE": 0,
+            "AVAILABILITY": False,
+            "GITHUB": "",
+            "LINKEDIN": "",
+            "DISCORD": "",
+            "CLIENT_COUNT": 0,
+            "PROJECTS_COMPLETED": 0,
+        }
     return context
-

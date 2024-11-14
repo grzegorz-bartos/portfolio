@@ -3,7 +3,7 @@
   <div class="card profile-card">
     <div class="card-body">
       <div class="image text-center">
-        <img src="{% static 'img/images/profile.png' %}" alt="profile">
+        <img src="{{ profile.profile_picture.url }}" alt="profile">
       </div>
       <div class="text">
         <h3 class="card-title">Grzegorz Bartos👋</h3>

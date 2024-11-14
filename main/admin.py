@@ -6,7 +6,8 @@ from .models import (
     ClientOpinion,
     Service,
     Article,
-    Certificate
+    Certificate,
+    Profile,
 )
 
 
@@ -43,3 +44,4 @@ admin.site.register(ClientOpinion)
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Certificate, CertificateAdmin)
+admin.site.register(Profile)
