@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,13 +20,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+def get_env_variable(var_name):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        raise ImproperlyConfigured(f"The {var_name} environment variable is not set.")
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
+SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['grzegorzbartos.pl', 'www.grzegorzbartos.pl', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -113,6 +120,19 @@ USE_I18N = True
 
 USE_TZ = True
 
+if not DEBUG: # Only enable in production
+    # Enforce HTTPS-related settings
+    SECURE_HSTS_SECONDS = 5  # 1 year (in seconds)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Enforce HSTS for subdomains
+    SECURE_HSTS_PRELOAD = True  # Allow site to be preloaded in browsers' HSTS list
+    SECURE_SSL_REDIRECT = True
+
+    # Secure cookies
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+
+APPEND_SLASH = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -132,3 +152,4 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import (ExpertArea, Project, Service, Certificate, Article)
-from .utils import get_client_opinions
+from .utils import get_client_opinions, get_paginated_queryset
 from django.core.paginator import Paginator
 
 
@@ -44,17 +44,18 @@ def services(request):
 
 def portfolio(request):
     projects = Project.objects.all()
-    paginator = Paginator(projects, 2)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+
+    page_number = request.GET.get('page', 1)
+    page_obj = get_paginated_queryset(projects, page_number)
+
     context = {
         "page_obj": page_obj,  # Ensure you pass it as 'page_obj'
     }
     return render(request, 'portfolio.html', context)
 
 
-def portfolio_details(request, project_id):
-    project = get_object_or_404(Project, id=project_id)
+def portfolio_details(request, slug):
+    project = get_object_or_404(Project, slug=slug)
     additional_images = project.additional_images.all()[:2]
     services_list = list(project.services.values_list('name', flat=True))
 
@@ -80,9 +81,11 @@ def portfolio_details(request, project_id):
 
 def blog(request):
     articles = Article.objects.all()
-    paginator = Paginator(articles, 4)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+
+    page_number = request.GET.get('page', 1)
+
+    page_obj = get_paginated_queryset(articles, page_number, per_page=4)
+
     context = {
         "page_obj": page_obj,
     }
@@ -91,6 +94,7 @@ def blog(request):
 
 def blog_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)
+
     previous_article = Article.objects.filter(id__lt=article.id).order_by('-id').first()
     next_article = Article.objects.filter(id__gt=article.id).order_by('id').first()
 

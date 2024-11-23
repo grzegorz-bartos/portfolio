@@ -33,7 +33,7 @@
                           </div>
                           <div class="text">
                             <div class="info">
-                              <a href="{% url 'portfolio_details' project.id %}" class="title">{{ project.title }}</a>
+                              <a href="{% url 'portfolio_details' project.slug %}" class="title">{{ project.title }}</a>
                               {% if project.short_description %}
                               <p class="subtitle">{{ project.short_description }}</p>
                               {% endif %}
