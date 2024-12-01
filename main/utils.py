@@ -25,7 +25,6 @@ def get_client_opinions(limit=10):
     return cached_opinions
 
 
-
 def get_paginated_queryset(queryset, page_number, per_page=2):
     """
     Paginates a queryset for the given page number.

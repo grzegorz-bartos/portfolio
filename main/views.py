@@ -1,10 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from .models import (ExpertArea, Project, Service, Certificate, Article)
 from .utils import get_client_opinions, get_paginated_queryset
-from django.core.paginator import Paginator
+from django_ratelimit.decorators import ratelimit
+from django.http import JsonResponse
 
 
+@ratelimit(key='ip', rate='10/m', block=False)
 def home(request):
+    was_limited = getattr(request, 'limited', False)
+    if was_limited:
+        return render(request, 'rate_limit.html')
+
     expert_areas = ExpertArea.objects.all()[:6]
     certificates = Certificate.objects.all()[:10]
     certificates = list(certificates)
@@ -21,6 +27,7 @@ def home(request):
     return render(request, 'base.html', context)
 
 
+@ratelimit(key='ip', rate='10/m', block=True)
 def about(request):
     brands = None
     client_opinions = get_client_opinions()
@@ -32,6 +39,7 @@ def about(request):
     return render(request, 'about.html', context)
 
 
+@ratelimit(key='ip', rate='10/m', block=True)
 def services(request):
     client_opinions = get_client_opinions()
     services_list = Service.objects.all()[:8]
@@ -42,6 +50,7 @@ def services(request):
     return render(request, 'services.html', context)
 
 
+@ratelimit(key='ip', rate='10/m', block=True)
 def portfolio(request):
     projects = Project.objects.all()
 
@@ -54,6 +63,7 @@ def portfolio(request):
     return render(request, 'portfolio.html', context)
 
 
+@ratelimit(key='ip', rate='10/m', block=True)
 def portfolio_details(request, slug):
     project = get_object_or_404(Project, slug=slug)
     additional_images = project.additional_images.all()[:2]
@@ -79,6 +89,7 @@ def portfolio_details(request, slug):
     return render(request, 'portfolio-details.html', context)
 
 
+@ratelimit(key='ip', rate='10/m', block=True)
 def blog(request):
     articles = Article.objects.all()
 
@@ -92,6 +103,7 @@ def blog(request):
     return render(request, 'blog.html', context)
 
 
+@ratelimit(key='ip', rate='10/m', block=True)
 def blog_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)
 
@@ -106,5 +118,17 @@ def blog_article(request, article_id):
     return render(request, 'article.html', context)
 
 
+@ratelimit(key='ip', rate='10/m', block=True)
 def contact(request):
     return render(request, 'contact.html')
+
+
+def rate_limit_exceeded(request):
+    """
+    Custom view to handle rate-limited requests.
+    """
+    # For HTML response
+    return render(request, 'rate_limit.html', status=429)
+
+    # Uncomment the following line for a JSON response
+    # return JsonResponse({'error': 'Too many requests. Please try again later.'}, status=429)

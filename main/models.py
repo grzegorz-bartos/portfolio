@@ -2,6 +2,7 @@ from django.db import models
 from datetime import date
 from django.core.validators import MinValueValidator, MaxValueValidator, FileExtensionValidator
 from django.utils.text import slugify
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 # models
@@ -90,7 +91,9 @@ class Certificate(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField(blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    description = CKEditor5Field(
+        verbose_name="Description",
+        blank=True, null=True)
     short_description = models.CharField(max_length=80, blank=True, null=True)
     image = models.ImageField(
         upload_to='project_images',

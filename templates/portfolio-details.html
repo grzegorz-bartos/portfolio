@@ -51,7 +51,7 @@
                       {% if project.overview %}
                       <div class="overview">
                         <h4 class="card-title">Overview</h4>
-                        <p>{{ project.overview|safe }}</p>
+                        <p>{{ project.overview }}</p>
                       </div>
                       {% endif %}
                     </div>
@@ -72,7 +72,7 @@
                     {% if project.description %}
                     <div class="more-info-block">
                       <h3 class="more-info-title">Project Description</h3>
-                      <p>{{ project.description|safe }}</p>
+                      <p>{{ project.description }}</p>
                     </div>
                     {% endif %}
                     <div class="prev-and-next-btn">
