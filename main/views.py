@@ -4,7 +4,6 @@ from .utils import get_client_opinions, get_paginated_queryset
 from django_ratelimit.decorators import ratelimit
 from django.http import JsonResponse
 
-
 @ratelimit(key='ip', rate='10/m', block=False)
 def home(request):
     was_limited = getattr(request, 'limited', False)
