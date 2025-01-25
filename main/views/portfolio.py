@@ -1,18 +1,19 @@
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.generic import ListView
 from django_ratelimit.decorators import ratelimit
 
 from main.models import Project
 from main.utils import get_paginated_queryset
 
 
-@ratelimit(key='ip', rate='10/m', block=True)
-def portfolio(request):
-    projects = Project.objects.all()
 
-    page_number = request.GET.get('page', 1)
-    page_obj = get_paginated_queryset(projects, page_number)
+@method_decorator(ratelimit(key='ip', rate='10/m', block=True), name='dispatch')
+class PortfolioView(ListView):
+    model = Project
+    template_name = 'portfolio.html'
+    context_object_name = 'page_obj'
+    paginate_by = 10
 
-    context = {
-        "page_obj": page_obj,  # Ensure you pass it as 'page_obj'
-    }
-    return render(request, 'portfolio.html', context)
+    def get_queryset(self):
+        return Project.objects.all()
