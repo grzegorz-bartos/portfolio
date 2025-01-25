@@ -1,0 +1,28 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment
+venv/
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore SQLite database
+db.sqlite3
+
+# Ignore IDE-specific files
+.idea/
+
+# Ignore migrations if you don't want them tracked (optional)
+main/migrations/
+
+# Ignore media files (if they are generated or shouldn't be tracked)
+media/
+
+# Ignore system files (optional, in case of accidental additions)
+.DS_Store
+Thumbs.db
