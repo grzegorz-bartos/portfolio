@@ -23,4 +23,4 @@ def home(request):
         'projects': projects,
         'services': services_list,
     }
-    return render(request, 'base.html', context) # home.html
+    return render(request, 'home.html', context) # home.html
