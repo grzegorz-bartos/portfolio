@@ -1,5 +1,5 @@
 from .home import HomeView
-from .about import about
+from .about import AboutView
 from .services import services
 from .portfolio import portfolio
 from .portfolio_details import portfolio_details
@@ -10,7 +10,7 @@ from .rate_limit_exceeded import rate_limit_exceeded
 
 __all__ = [
     'HomeView',
-    'about',
+    'AboutView',
     'services',
     'portfolio',
     'portfolio_details',
