@@ -4,7 +4,7 @@ from .models import Profile
 
 def personal_information(request):
     try:
-        profile = Profile.objects.get(id=1)  # Assuming you have a single profile entry
+        profile = Profile.objects.first()
         context = {
             "YEARS_OF_EXPERIENCE": profile.years_of_experience,
             "AVAILABILITY": profile.availability,
