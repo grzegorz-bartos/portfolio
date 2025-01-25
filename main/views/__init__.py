@@ -1,4 +1,4 @@
-from .home import home
+from .home import HomeView
 from .about import about
 from .services import services
 from .portfolio import portfolio
@@ -9,7 +9,7 @@ from .contact import contact
 from .rate_limit_exceeded import rate_limit_exceeded
 
 __all__ = [
-    'home',
+    'HomeView',
     'about',
     'services',
     'portfolio',
