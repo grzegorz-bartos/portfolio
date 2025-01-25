@@ -1,16 +1,16 @@
-from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView
 from django_ratelimit.decorators import ratelimit
 
 from main.models import Service
 from main.utils import get_client_opinions
 
+@method_decorator(ratelimit(key='ip', rate='10/m', block=True), name='dispatch')
+class ServicesView(TemplateView):
+    template_name = 'services.html'
 
-@ratelimit(key='ip', rate='10/m', block=True)
-def services(request):
-    client_opinions = get_client_opinions()
-    services_list = Service.objects.all()[:8]
-    context = {
-        'client_opinions': client_opinions,
-        'services': services_list,
-    }
-    return render(request, 'services.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['client_opinions'] = get_client_opinions()
+        context['services'] = Service.objects.all()[:8]
+        return context

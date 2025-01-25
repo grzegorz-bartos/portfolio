@@ -23,9 +23,9 @@ import main.views as views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.HomeView.as_view(), name='HomeView'),
+    path('', views.HomeView.as_view(), name='home'),
     path('about/', views.AboutView.as_view(), name='about'),
-    path('services/', views.services, name='services'),
+    path('services/', views.ServicesView.as_view(), name='services'),
     path('portfolio/', views.portfolio, name='portfolio'),
     path('portfolio/<slug:slug>/', views.portfolio_details, name='portfolio_details'),
     path('blog/', views.blog, name='blog'),
