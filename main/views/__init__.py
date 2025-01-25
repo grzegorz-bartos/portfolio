@@ -2,7 +2,7 @@ from .home import HomeView
 from .about import AboutView
 from .services import ServicesView
 from .projects import ProjectsView
-from .portfolio_details import portfolio_details
+from .project_details import ProjectDetailsView
 from .blog import blog
 from .blog_article import blog_article
 from .contact import contact
@@ -13,7 +13,7 @@ __all__ = [
     'AboutView',
     'ServicesView',
     'ProjectsView',
-    'portfolio_details',
+    'ProjectDetailsView',
     'blog',
     'blog_article',
     'contact',
