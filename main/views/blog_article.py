@@ -1,19 +1,22 @@
-from django.shortcuts import get_object_or_404, render
+from django.views.generic import DetailView
+from django.shortcuts import get_object_or_404
 from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
 
 from main.models import Article
 
 
-@ratelimit(key='ip', rate='10/m', block=True)
-def blog_article(request, article_id):
-    article = get_object_or_404(Article, id=article_id)
+@method_decorator(ratelimit(key='ip', rate='10/m', block=True), name='dispatch')
+class BlogArticleView(DetailView):
+    model = Article
+    template_name = 'article.html'
+    pk_url_kwarg = 'article_id'
 
-    previous_article = Article.objects.filter(id__lt=article.id).order_by('-id').first()
-    next_article = Article.objects.filter(id__gt=article.id).order_by('id').first()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        article = self.object
 
-    context = {
-        'article': article,
-        'previous_article': previous_article,
-        'next_article': next_article,
-    }
-    return render(request, 'article.html', context)
+        context['previous_article'] = Article.objects.filter(id__lt=article.id).order_by('-id').first()
+        context['next_article'] = Article.objects.filter(id__gt=article.id).order_by('id').first()
+
+        return context
