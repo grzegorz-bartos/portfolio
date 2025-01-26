@@ -12,7 +12,11 @@
                 <div class="card-body portfolio-card article-details-card">
                   <div class="article-details-area">
                     <div class="main-image">
-                      <img src="{{ article.image.url }}" alt="article image" class="img-fluid w-100">
+                      {% if article.image %}
+                        <img src="{{ article.image.url }}" alt="article image" class="img-fluid w-100">
+                      {% else %}
+                        <img alt="Default Image" class="img-fluid w-100">
+                      {% endif %}
                     </div>
                     <ul class="list-unstyled article-tags">
                       <li>{{ article.read_length }} min read</li>
@@ -54,7 +58,11 @@
                             <div class="article-publications-item">
                               <div class="image">
                                 <a href="{% url 'article' previous_article.id %}" class="d-block w-100">
-                                  <img src="{{ previous_article.image.url }}" alt="article image" class="img-fluid w-100">
+                                  {% if previous_article.image %}
+                                    <img src="{{ previous_article.image.url }}" alt="Previous article image" class="img-fluid w-100">
+                                  {% else %}
+                                    <img src="{% static 'path/to/default/image.jpg' %}" alt="Default Image" class="img-fluid w-100">
+                                  {% endif %}
                                 </a>
                                 <a href="{% url 'article' previous_article.id %}" class="tags">{{ previous_article.category }}</a>
                               </div>
@@ -75,7 +83,11 @@
                             <div class="article-publications-item">
                               <div class="image">
                                 <a href="{% url 'article' next_article.id %}" class="d-block w-100">
-                                  <img src="{{ next_article.image.url }}" alt="article image" class="img-fluid w-100">
+                                  {% if next_article.image %}
+                                    <img src="{{ next_article.image.url }}" alt="Next article image" class="img-fluid w-100">
+                                  {% else %}
+                                    <img src="{% static 'path/to/default/image.jpg' %}" alt="Default Image" class="img-fluid w-100">
+                                  {% endif %}
                                 </a>
                                 <a href="{% url 'article' next_article.id %}" class="tags">{{ next_article.category }}</a>
                               </div>
