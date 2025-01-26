@@ -10,6 +10,3 @@ class BlogView(ListView):
     model = Article
     template_name = 'blog.html'
     paginate_by = 4
-
-    def get_queryset(self):
-        return Article.objects.all()
