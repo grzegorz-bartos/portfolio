@@ -5,7 +5,7 @@ from main.models import Project
 from django.utils.decorators import method_decorator
 
 @method_decorator(ratelimit(key='ip', rate='10/m', block=False), name='dispatch')
-class ProjectDetailsView(DetailView):
+class ProjectDetailView(DetailView):
     model = Project
     template_name = 'project-details.html'
     context_object_name = 'project'
