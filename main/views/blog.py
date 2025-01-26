@@ -1,17 +1,15 @@
-from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.generic import ListView
 from django_ratelimit.decorators import ratelimit
+
 from main.models import Article
-from main.utils import get_paginated_queryset
 
-@ratelimit(key='ip', rate='10/m', block=True)
-def blog(request):
-    articles = Article.objects.all()
 
-    page_number = request.GET.get('page', 1)
+@method_decorator(ratelimit(key='ip', rate='10/m', block=True), name='dispatch')
+class BlogView(ListView):
+    model = Article
+    template_name = 'blog.html'
+    paginate_by = 4
 
-    page_obj = get_paginated_queryset(articles, page_number, per_page=4)
-
-    context = {
-        "page_obj": page_obj,
-    }
-    return render(request, 'blog.html', context)
+    def get_queryset(self):
+        return Article.objects.all()

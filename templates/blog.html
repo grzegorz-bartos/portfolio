@@ -12,11 +12,11 @@
                 <div class="card-body portfolio-card">
                   <div class="top-info">
                     <div class="text">
-                      <h1 class="main-title">{% if articles %}My Recent Articles and Publications{%else%}No articles yet.{% endif %}</h1>
+                      <h1 class="main-title">{% if page_obj %}My Recent Articles and Publications{%else%}No articles yet.{% endif %}</h1>
                       <p>{{ description }}</p>
                     </div>
                   </div>
-                  {% if articles %}
+                  {% if page_obj %}
                   {% include 'blog-items.html' %}
                   {% include 'pagination.html' %}
                   {% endif %}

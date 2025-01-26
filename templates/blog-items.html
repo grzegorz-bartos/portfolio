@@ -7,9 +7,11 @@
         <div class="article-publications-item">
           <div class="image">
             <a href="{% url 'article' article.id %}" class="d-block w-100">
-              <img src="{{ article.image.url }}"
-                   alt="{{ article.title }}"
-                   class="img-fluid w-100">
+              {% if article.image %}
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-100">
+              {% else %}
+                <img alt="Default Image" class="img-fluid w-100">
+              {% endif %}
             </a>
             <a href="/blog/" class="tags">{{ article.category }}</a>
           </div>
