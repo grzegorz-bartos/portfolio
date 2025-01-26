@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView
 from django_ratelimit.decorators import ratelimit
 
 
-@ratelimit(key='ip', rate='10/m', block=True)
-def contact(request):
-    return render(request, 'contact.html')
+@method_decorator(ratelimit(key='ip', rate='10/m', block=True), name='dispatch')
+class ContactView(TemplateView):
+    template_name = 'contact.html'

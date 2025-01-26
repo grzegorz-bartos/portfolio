@@ -5,7 +5,7 @@ from .projects import ProjectsView
 from .project_details import ProjectDetailsView
 from .blog import blog
 from .blog_article import blog_article
-from .contact import contact
+from .contact import ContactView
 from .rate_limit_exceeded import rate_limit_exceeded
 
 __all__ = [
@@ -16,6 +16,6 @@ __all__ = [
     'ProjectDetailsView',
     'blog',
     'blog_article',
-    'contact',
+    'ContactView',
     'rate_limit_exceeded',
 ]
