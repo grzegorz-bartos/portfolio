@@ -6,9 +6,7 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=100)
     overview = models.TextField(blank=True, null=True)
-    description = CKEditor5Field(
-        verbose_name="Description",
-        blank=True, null=True)
+    description = CKEditor5Field(blank=True, null=True)
     short_description = models.CharField(max_length=80, blank=True, null=True)
     image = models.ImageField(
         upload_to='project_images',
