@@ -26,21 +26,20 @@
                           <div class="row gx-3">
                             <div class="col-md-6">
                               <div class="mb-4">
-                                <label class="form-label">Name</label>
-                                <input name="name" required type="text" class="form-control shadow-none" placeholder="Enter your name">
+                                <label class="form-label">{{ form.name.label }}</label>
+                                {{ form.name }}
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="mb-4">
-                                <label class="form-label">Email</label>
-                                <input name="email" required type="email" class="form-control shadow-none" placeholder="Enter your email">
+                                <label class="form-label">{{ form.email.label }}</label>
+                                {{ form.email }}
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="mb-4">
-                                <label class="form-label">Comment</label>
-                                <textarea name="message" class="form-control shadow-none" rows="4"
-                                  placeholder="Type details about your inquiry"></textarea>
+                                <label class="form-label">{{ form.message.label }}</label>
+                                {{ form.message }}
                               </div>
                             </div>
                             <div class="col-md-12">
