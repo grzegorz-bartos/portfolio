@@ -1,3 +1,4 @@
+from .contact_message import ContactMessage
 from .profile import Profile
 from .expert_area import ExpertArea
 from .work_experience import WorkExperience
@@ -13,6 +14,7 @@ __all__ = [
     'ExpertArea',
     'WorkExperience',
     'Certificate',
+    'ContactMessage',
     'Project',
     'ProjectImage',
     'ClientOpinion',
