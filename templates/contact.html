@@ -21,7 +21,8 @@
                   <div class="contact-area">
                     <div class="leave-comments-area">
                       <div class="comments-box">
-                        <form id="contact-form" action="assets/mail.php" method="POST">
+                        <form id="contact-form" method="POST">
+                          {% csrf_token %}
                           <div class="row gx-3">
                             <div class="col-md-6">
                               <div class="mb-4">
@@ -33,24 +34,6 @@
                               <div class="mb-4">
                                 <label class="form-label">Email</label>
                                 <input name="email" required type="email" class="form-control shadow-none" placeholder="Enter your email">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="mb-4">
-                                <label class="form-label">Subject</label>
-                                <input name="subject" required type="text" class="form-control shadow-none" placeholder="Subject">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="mb-4">
-                                <label class="form-label">Budget</label>
-                                <select name="budget" required class="form-select shadow-none">
-                                  <option disabled selected>Select budget...</option>
-                                  <option value="$5000">$5000</option>
-                                  <option value="$5000 - $1000">$5000 - $10000</option>
-                                  <option value="$10000 - $2000">$10000 - $20000</option>
-                                  <option value="$20000">$20000+</option>
-                                </select>
                               </div>
                             </div>
                             <div class="col-md-12">
@@ -81,7 +64,6 @@
                       <iframe
                               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d80128.80634141182!2d16.90937921707044!3d51.126443237593676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fe9c2d4b58abf%3A0xb70956aec205e0f5!2zV3JvY8WCYXc!5e0!3m2!1spl!2spl!4v1727522564752!5m2!1spl!2spl"
                               allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-
                       </iframe>
                     </div>
                     {% if FAQ %}
