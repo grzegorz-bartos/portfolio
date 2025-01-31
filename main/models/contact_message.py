@@ -1,7 +1,8 @@
 from django.db import models
 from django import forms
-from django.shortcuts import render, redirect
-from django.views import View
+from django.urls import reverse_lazy
+from django.views.generic import FormView
+
 
 class ContactMessage(models.Model):
     name = models.CharField(max_length=255)
@@ -17,14 +18,12 @@ class ContactForm(forms.ModelForm):
         model = ContactMessage
         fields = ['name', 'email', 'message']
 
-class ContactView(View):
-    def get(self, request):
-        form = ContactForm()
-        return render(request, 'contact.html', {'form': form})
 
-    def post(self, request):
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('contact_success')
-        return render(request, 'contact.html', {'form': form})
+class ContactView(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = reverse_lazy('contact_success')  # Redirects after successful submission
+
+    def form_valid(self, form):
+        form.save()  # Saves the form data to the database
+        return super().form_valid(form)
