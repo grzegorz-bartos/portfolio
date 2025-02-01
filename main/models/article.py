@@ -1,4 +1,5 @@
 from django.core.validators import FileExtensionValidator
+from django_ckeditor_5.fields import CKEditor5Field
 from django.db import models
 
 class Article(models.Model):
@@ -21,7 +22,7 @@ class Article(models.Model):
         validators=[FileExtensionValidator(['jpg', 'png', 'jpeg'])]
     )
 
-    content = models.TextField(blank=True, null=True)
+    content = CKEditor5Field(blank=True, null=True)
     tags = models.CharField(max_length=100, blank=True, null=True, help_text="Comma-separated list of tags")
     views = models.IntegerField(blank=True, null=True, default=0)
 
