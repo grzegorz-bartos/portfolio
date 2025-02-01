@@ -27,8 +27,8 @@ class ContactForm(forms.ModelForm):
 class ContactView(FormView):
     template_name = 'contact.html'
     form_class = ContactForm
-    success_url = reverse_lazy('contact_success')  # Redirects after successful submission
+    success_url = reverse_lazy('contact_success')
 
     def form_valid(self, form):
-        form.save()  # Saves the form data to the database
+        form.save()
         return super().form_valid(form)
