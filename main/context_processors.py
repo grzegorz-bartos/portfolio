@@ -1,5 +1,6 @@
 # context_processors.py
 from .models import Profile
+from datetime import date
 
 def personal_information(request):
     profile = Profile.objects.first()
@@ -15,7 +16,7 @@ def personal_information(request):
         }
     else:
         context = {
-            "YEARS_OF_EXPERIENCE": profile.years_of_experience,
+            "YEARS_OF_EXPERIENCE": date.today().year - profile.start_year,
             "AVAILABILITY": profile.availability,
             "GITHUB": profile.github,
             "LINKEDIN": profile.linkedin,
