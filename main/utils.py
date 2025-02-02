@@ -13,7 +13,6 @@ def get_client_opinions(limit=10):
     Returns:
         QuerySet: A queryset of ClientOpinion objects.
     """
-    # Check if cached opinions exist
     cached_opinions = cache.get('client_opinions')
     if cached_opinions is None:
         try:
@@ -21,7 +20,7 @@ def get_client_opinions(limit=10):
             cache.set('client_opinions', client_opinions, 300)  # Cache for 5 minutes
             return client_opinions
         except:
-            return ClientOpinion.objects.none()  # Returns an empty QuerySet
+            return ClientOpinion.objects.none()
     return cached_opinions
 
 
@@ -41,4 +40,4 @@ def get_paginated_queryset(queryset, page_number, per_page=2):
     try:
         return paginator.page(page_number)
     except (EmptyPage, PageNotAnInteger, ValueError):
-        return paginator.page(1)  # Fallback to the first page
+        return paginator.page(1)
