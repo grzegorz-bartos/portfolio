@@ -22,13 +22,3 @@ class ContactForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control shadow-none', 'placeholder': 'Enter your email'}),
             'message': forms.Textarea(attrs={'class': 'form-control shadow-none', 'rows': 4, 'placeholder': 'Type details about your inquiry'}),
         }
-
-
-class ContactView(FormView):
-    template_name = 'contact.html'
-    form_class = ContactForm
-    success_url = reverse_lazy('contact_success')
-
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
