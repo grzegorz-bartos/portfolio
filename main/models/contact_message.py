@@ -1,7 +1,5 @@
 from django.db import models
 from django import forms
-from django.urls import reverse_lazy
-from django.views.generic import FormView
 
 
 class ContactMessage(models.Model):
