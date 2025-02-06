@@ -1,5 +1,4 @@
 from django.db import models
-from django import forms
 
 
 class ContactMessage(models.Model):
@@ -10,13 +9,3 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"Message from {self.name} ({self.email})"
-
-class ContactForm(forms.ModelForm):
-    class Meta:
-        model = ContactMessage
-        fields = ['name', 'email', 'message']
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control shadow-none', 'placeholder': 'Enter your name'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control shadow-none', 'placeholder': 'Enter your email'}),
-            'message': forms.Textarea(attrs={'class': 'form-control shadow-none', 'rows': 4, 'placeholder': 'Type details about your inquiry'}),
-        }
