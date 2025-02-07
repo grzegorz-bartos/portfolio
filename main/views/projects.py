@@ -1,7 +1,6 @@
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from django_ratelimit.decorators import ratelimit
-
 from main.models import Project
 
 @method_decorator(ratelimit(key='ip', rate='10/m', block=True), name='dispatch')

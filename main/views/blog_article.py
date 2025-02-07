@@ -1,8 +1,6 @@
 from django.views.generic import DetailView
-from django.shortcuts import get_object_or_404
 from django_ratelimit.decorators import ratelimit
 from django.utils.decorators import method_decorator
-
 from main.models import Article
 
 

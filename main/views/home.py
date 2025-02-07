@@ -1,7 +1,5 @@
 from django_ratelimit.decorators import ratelimit
-
 from main.models import ExpertArea, Certificate, Project, Service
-
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 

@@ -4,7 +4,6 @@ from django.views.generic import CreateView
 from django_ratelimit.decorators import ratelimit
 from main.forms import ContactForm
 
-
 @method_decorator(ratelimit(key='ip', rate='10/m', block=True), name='dispatch')
 class ContactView(CreateView):
     template_name = 'contact.html'
