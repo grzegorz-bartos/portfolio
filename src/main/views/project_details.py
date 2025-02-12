@@ -1,7 +1,7 @@
 from django.views.generic import DetailView
 from django.shortcuts import get_object_or_404, render
 from django_ratelimit.decorators import ratelimit
-from main.models import Project
+from ..models import Project
 from django.utils.decorators import method_decorator
 
 @method_decorator(ratelimit(key='ip', rate='10/m', block=False), name='dispatch')

@@ -1,7 +1,7 @@
 from django.views.generic import DetailView
 from django_ratelimit.decorators import ratelimit
 from django.utils.decorators import method_decorator
-from main.models import Article
+from ..models import Article
 
 
 @method_decorator(ratelimit(key='ip', rate='10/m', block=True), name='dispatch')
