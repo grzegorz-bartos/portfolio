@@ -2,7 +2,7 @@ from django_ratelimit.decorators import ratelimit
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 
-from main.utils import get_client_opinions
+from ..utils import get_client_opinions
 
 @method_decorator(ratelimit(key='ip', rate='10/m', block=True), name='dispatch')
 class AboutView(TemplateView):
