@@ -8,7 +8,6 @@ from .client_opinion import ClientOpinion
 from .service import Service
 from .article import Article
 
-
 __all__ = [
     'Profile',
     'ExpertArea',

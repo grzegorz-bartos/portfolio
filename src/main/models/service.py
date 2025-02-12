@@ -1,7 +1,6 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
-
 class Service(models.Model):
     name = models.CharField(max_length=20)
     #fa_class = models.CharField(max_length=30, blank=True, null=True)

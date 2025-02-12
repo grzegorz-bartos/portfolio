@@ -1,7 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-
 class ClientOpinion(models.Model):
     name = models.CharField(max_length=12)
     occupation = models.CharField(max_length=20)
