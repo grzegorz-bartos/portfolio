@@ -1,6 +1,8 @@
 # context_processors.py
-from .models import Profile
 from datetime import date
+
+from .models import Profile
+
 
 def personal_information(request):
     profile = Profile.objects.first()

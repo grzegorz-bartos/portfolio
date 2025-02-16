@@ -7,18 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0003_contactmessage'),
+        ("main", "0003_contactmessage"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='start_year',
+            model_name="profile",
+            name="start_year",
             field=models.PositiveIntegerField(default=2021),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='description',
+            model_name="project",
+            name="description",
             field=django_ckeditor_5.fields.CKEditor5Field(blank=True, null=True),
         ),
     ]

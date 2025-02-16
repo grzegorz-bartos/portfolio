@@ -1,7 +1,8 @@
 from django.core.validators import FileExtensionValidator
+from django.db import models
 from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
-from django.db import models
+
 
 class Project(models.Model):
     title = models.CharField(max_length=100)
@@ -9,13 +10,14 @@ class Project(models.Model):
     description = CKEditor5Field(blank=True, null=True)
     short_description = models.CharField(max_length=80, blank=True, null=True)
     image = models.ImageField(
-        upload_to='project_images',
-        blank=True, null=True,
-        validators=[FileExtensionValidator(['jpg', 'png', 'jpeg'])]
+        upload_to="project_images",
+        blank=True,
+        null=True,
+        validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],
     )
 
     client = models.CharField(max_length=100, blank=True, null=True)
-    services = models.ManyToManyField('Service', blank=True)
+    services = models.ManyToManyField("Service", blank=True)
     website = models.URLField(blank=True, null=True)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
 
@@ -34,17 +36,20 @@ class Project(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        ordering = ['-id']
+        ordering = ["-id"]
         verbose_name = "Project"
         verbose_name_plural = "Projects"
 
 
 class ProjectImage(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='additional_images')
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name="additional_images"
+    )
     image = models.ImageField(
-        upload_to='project_images/additional_images',
-        blank=True, null=True,
-        validators=[FileExtensionValidator(['jpg', 'png', 'jpeg'])]
+        upload_to="project_images/additional_images",
+        blank=True,
+        null=True,
+        validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],
     )
 
     def __str__(self):

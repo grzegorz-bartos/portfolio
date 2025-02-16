@@ -14,29 +14,40 @@ Including another URLconf
     1. Import the-include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls.static import static
+
 from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
 from django.views.generic import TemplateView
 
 import main.views as views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.HomeView.as_view(), name='home'),
-    path('about/', views.AboutView.as_view(), name='about'),
-    path('services/', views.ServicesView.as_view(), name='services'),
-    path('projects/', views.ProjectsView.as_view(), name='projects'),
-    path('projects/<slug:slug>/', views.ProjectDetailView.as_view(), name='project_details'),
-    path('blog/', views.BlogView.as_view(), name='blog'),
-    path('blog/article/<int:article_id>/', views.BlogArticleView.as_view(), name='article'),
-    path('contact/', views.ContactView.as_view(), name='contact'),
-    path('contact/success/', TemplateView.as_view(template_name='contact_success.html'), name='contact_success'),
-    path("ckeditor5/", include('django_ckeditor_5.urls')),
+    path("admin/", admin.site.urls),
+    path("", views.HomeView.as_view(), name="home"),
+    path("about/", views.AboutView.as_view(), name="about"),
+    path("services/", views.ServicesView.as_view(), name="services"),
+    path("projects/", views.ProjectsView.as_view(), name="projects"),
+    path(
+        "projects/<slug:slug>/",
+        views.ProjectDetailView.as_view(),
+        name="project_details",
+    ),
+    path("blog/", views.BlogView.as_view(), name="blog"),
+    path(
+        "blog/article/<int:article_id>/",
+        views.BlogArticleView.as_view(),
+        name="article",
+    ),
+    path("contact/", views.ContactView.as_view(), name="contact"),
+    path(
+        "contact/success/",
+        TemplateView.as_view(template_name="contact_success.html"),
+        name="contact_success",
+    ),
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

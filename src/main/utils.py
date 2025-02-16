@@ -1,6 +1,7 @@
-from .models import ClientOpinion
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
+from .models import ClientOpinion
 
 
 def get_client_opinions(limit=10):
@@ -13,13 +14,13 @@ def get_client_opinions(limit=10):
     Returns:
         QuerySet: A queryset of ClientOpinion objects.
     """
-    cached_opinions = cache.get('client_opinions')
+    cached_opinions = cache.get("client_opinions")
     if cached_opinions is None:
         try:
             client_opinions = ClientOpinion.objects.all()[:limit]
-            cache.set('client_opinions', client_opinions, 300)  # Cache for 5 minutes
+            cache.set("client_opinions", client_opinions, 300)  # Cache for 5 minutes
             return client_opinions
-        except:
+        except Exception:
             return ClientOpinion.objects.none()
     return cached_opinions
 
