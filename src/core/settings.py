@@ -27,6 +27,7 @@ ALLOWED_HOSTS = [
     "grzegorzbartos.pl",
     "www.grzegorzbartos.pl",
     "127.0.0.1",
+    "portfolio-website-env.eba-dm3qmtnz.eu-north-1.elasticbeanstalk.com",
 ]
 
 # Application definition
@@ -76,23 +77,23 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR.parent / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "db",
-        "PORT": "5432",
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR.parent / "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "awseb-e-9d3esnuyzw-stack-awsebrdsdatabase-0xqxphdctm79",
+#         "USER": "postgres",
+#         "PASSWORD": "postgres",
+#         "HOST": "awseb-e-9d3esnuyzw-stack-awsebrdsdatabase-0xqxphdctm79.ctwcaaku4q68.eu-north-1.rds.amazonaws.com",
+#         "PORT": "5432",
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -136,11 +137,6 @@ if not DEBUG:  # Only enable in production
 
 
 APPEND_SLASH = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
