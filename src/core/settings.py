@@ -26,7 +26,7 @@ ALLOWED_HOSTS = [
     "grzegorzbartos.pl",
     "www.grzegorzbartos.pl",
     "127.0.0.1",
-    "portfolio-website-env.eba-dm3qmtnz.eu-north-1.elasticbeanstalk.com",
+    "Portfolio-env.eba-fxgmytpp.eu-north-1.elasticbeanstalk.com",
 ]
 
 # Application definition
@@ -83,17 +83,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "awseb-e-9d3esnuyzw-stack-awsebrdsdatabase-0xqxphdctm79",
-#         "USER": "postgres",
-#         "PASSWORD": "postgres",
-#         "HOST": "awseb-e-9d3esnuyzw-stack-awsebrdsdatabase-0xqxphdctm79.ctwcaaku4q68.eu-north-1.rds.amazonaws.com",
-#         "PORT": "5432",
-#     }
-# }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -144,7 +133,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 USE_S3 = env("USE_S3")
 if USE_S3:
-    print("USE_S3 =", USE_S3)
     AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
@@ -154,17 +142,15 @@ if USE_S3:
     DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    print(AWS_STORAGE_BUCKET_NAME)
-    print(AWS_SECRET_ACCESS_KEY)
-    print(AWS_STORAGE_BUCKET_NAME)
-    AWS_LOCATION = "static"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
+    AWS_LOCATION_STATIC = "static"
+    AWS_LOCATION_MEDIA = "media"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION_STATIC}/"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION_MEDIA}/"
 else:
     STATIC_URL = "/staticfiles/"
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-MEDIA_URL = "/mediafiles/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
