@@ -60,17 +60,7 @@
                     </div>
                   </div>
                   {% if brands %}
-                  <div class="working-with-area">
-                    <h2 class="main-common-title">Working With 50+ Brands ✨
-                    </h2>
-                    <div class="working-with-main">
-                      {% for brand in brands %}
-                      <div class="items">
-                        <img src="{% static 'img/icons/{{ brand }}.svg' %}" alt="{{ brand }}">
-                      </div>
-                      {% endfor %}
-                    </div>
-                  </div>
+                  {% include 'working-with.html' %}
                   {% endif %}
                   {% include 'client-feedback.html' %}
                   {% if awards %}
