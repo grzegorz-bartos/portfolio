@@ -1,7 +1,21 @@
+from django.conf import settings
+from django.core.files.storage import default_storage
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
+from storages.backends.s3boto3 import S3Boto3Storage
+
+
+class PublicS3Storage(S3Boto3Storage):
+    pass
+
+
+app_storage = None
+if settings.DEBUG:
+    app_storage = default_storage
+else:
+    app_storage = PublicS3Storage()
 
 
 class Project(models.Model):
@@ -10,7 +24,8 @@ class Project(models.Model):
     description = CKEditor5Field(blank=True, null=True)
     short_description = models.CharField(max_length=80, blank=True, null=True)
     image = models.ImageField(
-        upload_to="project_images",
+        storage=app_storage,
+        upload_to="media/project_images",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],
