@@ -7,7 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    USE_S3=(bool, False),
 )
 
 # Take environment variables from .env file
@@ -138,24 +139,20 @@ if USE_S3:
     AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
     AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
     AWS_DEFAULT_ACL = "public-read"
-    # DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    AWS_LOCATION_STATIC = "static"
+    AWS_LOCATION_STATIC = "staticfiles"
     AWS_LOCATION_MEDIA = "media"
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION_STATIC}/"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION_MEDIA}/"
 else:
-    STATIC_URL = "/staticfiles/"
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+    DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+    STATIC_URL = "static/"
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 MEDIA_URL = "/mediafiles/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 # CKEditor config
 customColorPalette = [
