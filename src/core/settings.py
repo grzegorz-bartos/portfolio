@@ -9,6 +9,7 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
     USE_S3=(bool, False),
+    USE_RDS=(bool, False),
 )
 
 # Take environment variables from .env file
