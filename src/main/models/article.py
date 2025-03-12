@@ -2,6 +2,8 @@ from django.core.validators import FileExtensionValidator
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
 
+from main.storages import get_storage
+
 
 class Article(models.Model):
     class ArticleCategory(models.TextChoices):
@@ -15,7 +17,8 @@ class Article(models.Model):
         verbose_name="Date when the article was published."
     )
     image = models.FileField(
-        upload_to="article_images",
+        storage=get_storage(),
+        upload_to="media/article_images",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],
