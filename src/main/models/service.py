@@ -1,12 +1,15 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
+from main.storages import get_storage
+
 
 class Service(models.Model):
     name = models.CharField(max_length=20)
     # fa_class = models.CharField(max_length=30, blank=True, null=True)
     image = models.FileField(
-        upload_to="service_images",
+        storage=get_storage(),
+        upload_to="media/service_images",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg", "svg"])],
