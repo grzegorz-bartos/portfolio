@@ -128,16 +128,16 @@ USE_I18N = True
 
 USE_TZ = True
 
-if not DEBUG:  # Only enable in production
-    # Enforce HTTPS-related settings
-    SECURE_HSTS_SECONDS = 5  # might put here 1 year (in seconds)
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Enforce HSTS for subdomains
-    SECURE_HSTS_PRELOAD = True  # Allow site to be preloaded in browsers' HSTS list
-    SECURE_SSL_REDIRECT = True
-
-    # Secure cookies
-    # SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+# if not DEBUG:  # Only enable in production
+#     # Enforce HTTPS-related settings
+#     SECURE_HSTS_SECONDS = 5  # might put here 1 year (in seconds)
+#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Enforce HSTS for subdomains
+#     SECURE_HSTS_PRELOAD = True  # Allow site to be preloaded in browsers' HSTS list
+#     SECURE_SSL_REDIRECT = True
+#
+#     # Secure cookies
+#     # SESSION_COOKIE_SECURE = True
+#     CSRF_COOKIE_SECURE = True
 
 
 APPEND_SLASH = True
@@ -165,8 +165,8 @@ else:
     DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
     STATIC_URL = "static/"
     STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-    # MEDIA_URL = "/media/"
-    # MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # CKEditor config
 customColorPalette = [
