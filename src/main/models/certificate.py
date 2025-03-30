@@ -1,6 +1,8 @@
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
+from main.storages import get_storage
+
 
 class Certificate(models.Model):
     SOURCE_CHOICES = [
@@ -15,7 +17,8 @@ class Certificate(models.Model):
     )
     date_issued = models.DateField(blank=True, null=True)
     icon = models.FileField(
-        upload_to="certification_icons/",
+        storage=get_storage(),
+        upload_to="media/certification_icons",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg", "svg"])],
