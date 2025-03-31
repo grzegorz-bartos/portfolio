@@ -419,11 +419,14 @@ p {
 .profile-card .image {
 	background-color: var(--background);
 	border-radius: 8px;
-	overflow: hidden;
+	overflow: auto;
+	aspect-ratio: 368 / 309;
 }
 
 .profile-card .image img {
-	margin-top: 10px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .profile-card .text {
