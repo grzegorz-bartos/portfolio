@@ -7,6 +7,7 @@ from main.storages import get_storage
 class Certificate(models.Model):
     SOURCE_CHOICES = [
         ("Udemy", "Udemy"),
+        ("LinkedIn", "LinkedIn"),
         ("Other", "Other (Specify)"),
     ]
 
@@ -29,7 +30,7 @@ class Certificate(models.Model):
     updated_at = models.DateField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        if self.source != "other":
+        if self.source != "Other":
             self.source_custom = ""
         super().save(*args, **kwargs)
 
