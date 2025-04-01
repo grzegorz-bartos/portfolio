@@ -27,9 +27,11 @@ SECRET_KEY = env("SECRET_KEY")
 ALLOWED_HOSTS = [
     "grzegorzbartos.pl",
     "www.grzegorzbartos.pl",
-    "127.0.0.1",
     "Portfolio-env.eba-fxgmytpp.eu-north-1.elasticbeanstalk.com",
 ]
+
+if DEBUG:
+    ALLOWED_HOSTS += ["127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = ["https://grzegorzbartos.pl", "https://www.grzegorzbartos.pl"]
 
