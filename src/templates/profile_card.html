@@ -41,10 +41,25 @@
           <div class="social-media-icon">
             <ul class="list-unstyled">
                 {% if RESUME %}
-              <li><a href="{{RESUME}}" target="_blank"><i class="fas fa-file"></i></a></li>
+              <li>
+                <a href="{{RESUME}}" target="_blank">
+                  <i class="fas fa-file"></i>
+                  <span class="social-media-icon-label">Resume</span>
+                </a>
+              </li>
                 {% endif %}
-              <li><a href="{{LINKEDIN}}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-              <li><a href="{{GITHUB}}" target="_blank"><i class="fab fa-github"></i></a></li>
+              <li>
+                <a href="{{LINKEDIN}}" target="_blank">
+                  <i class="fab fa-linkedin"></i>
+                  <span class="social-media-icon-label">LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{GITHUB}}" target="_blank">
+                  <i class="fab fa-github"></i>
+                  <span class="social-media-icon-label">GitHub</span>
+                </a>
+              </li>
 <!--              <li><a href="{{DISCORD}}" target="_blank"><i class="fab fa-discord"></i></a></li>-->
             </ul>
           </div>

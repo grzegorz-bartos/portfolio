@@ -517,26 +517,51 @@ p {
 
 .social-media-icon ul li {
 	display: inline-block;
-}
-
-.social-media-icon ul li {
 	margin-right: 4px;
 }
 
 .social-media-icon ul li a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-start;
 	color: #384559;
 	font-size: 20px;
 	width: 40px;
 	height: 40px;
 	border-radius: 8px;
 	border: 1px solid var(--border);
-	text-align: center;
-	line-height: 40px;
+	overflow: hidden;
+	transition: width 0.3s ease-out, padding-left 0.3s ease-out;
+	/* no extra padding here */
 }
 
+/* Initially center the icon by giving it a left margin.
+   Adjust the 10px value if your icon size differs. */
+.social-media-icon ul li a i {
+	margin-left: 10px;
+	transition: margin-left 0.3s ease-out;
+}
+
+/* Label hidden initially */
+.social-media-icon ul li a .social-media-icon-label {
+	opacity: 0;
+	margin-left: 8px;
+	white-space: nowrap;
+	transition: opacity 0.3s ease-out, margin-left 0.3s ease-out;
+}
+
+/* On hover, expand container and move icon left */
 .social-media-icon ul li a:hover {
 	color: var(--primary);
+	width: 120px;
 }
+
+/* Fade in and position the label */
+.social-media-icon ul li a:hover .social-media-icon-label {
+	opacity: 1;
+	margin-left: 8px;
+}
+
 
 .card-projects .project-item .image {
 	background-color: var(--background);
