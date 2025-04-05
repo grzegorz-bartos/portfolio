@@ -825,7 +825,7 @@ p {
 .content-box-card .top-info {
 	display: flex;
 	gap: 40px;
-	justify-content: space-between;
+	justify-content: center;
 	margin-bottom: 48px;
 }
 
