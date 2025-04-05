@@ -40,7 +40,9 @@
         <div class="social-availability-container">
           <div class="social-media-icon">
             <ul class="list-unstyled">
-              <li><a href="{% static 'pdfs/resume.pdf' %}" target="_blank"><i class="fas fa-file"></i></a></li>
+                {% if RESUME %}
+              <li><a href="{{RESUME}}" target="_blank"><i class="fas fa-file"></i></a></li>
+                {% endif %}
               <li><a href="{{LINKEDIN}}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
               <li><a href="{{GITHUB}}" target="_blank"><i class="fab fa-github"></i></a></li>
 <!--              <li><a href="{{DISCORD}}" target="_blank"><i class="fab fa-discord"></i></a></li>-->

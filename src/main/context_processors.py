@@ -16,11 +16,8 @@ def personal_information(request):
             "CLIENT_COUNT": 0,
             "PROJECTS_COMPLETED": 0,
             "PROFILE_PICTURE": "",
+            "RESUME": False,
         }
-    if not profile.image:
-        profile_picture_url = ""
-    else:
-        profile_picture_url = profile.image.url
 
     return {
         "YEARS_OF_EXPERIENCE": date.today().year - profile.start_year,
@@ -30,5 +27,6 @@ def personal_information(request):
         "DISCORD": profile.discord,
         "CLIENT_COUNT": profile.client_count,
         "PROJECTS_COMPLETED": profile.projects_completed,
-        "PROFILE_PICTURE": profile_picture_url,
+        "PROFILE_PICTURE": profile.image.url if profile.image else "",
+        "RESUME": profile.resume.url if profile.resume else "",
     }

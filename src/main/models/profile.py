@@ -22,5 +22,13 @@ class Profile(models.Model):
         validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],
     )
 
+    resume = models.FileField(
+        storage=get_storage(),
+        upload_to="media/pdfs",
+        blank=True,
+        null=True,
+        validators=[FileExtensionValidator(["pdf"])],
+    )
+
     def __str__(self):
         return self.name
