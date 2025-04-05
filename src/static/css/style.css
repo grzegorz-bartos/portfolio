@@ -511,57 +511,68 @@ p {
 	background-color: var(--background);
 }
 
+/* Social Media Icon Container */
+/* Container for social media icons */
 .social-media-icon {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
+/* Reset list styles */
+.social-media-icon ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each list item (icon container) */
 .social-media-icon ul li {
-	display: inline-block;
-	margin-right: 4px;
+  display: inline-block;
+  margin-right: 4px;
 }
 
+/* Social media link styles */
 .social-media-icon ul li a {
-	display: inline-flex;
-	align-items: center;
-	justify-content: flex-start;
-	color: #384559;
-	font-size: 20px;
-	width: 40px;
-	height: 40px;
-	border-radius: 8px;
-	border: 1px solid var(--border);
-	overflow: hidden;
-	transition: width 0.3s ease-out, padding-left 0.3s ease-out;
-	/* no extra padding here */
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: #384559;
+  font-size: 20px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: width 0.3s ease, color 0.3s ease;
 }
 
-/* Initially center the icon by giving it a left margin.
-   Adjust the 10px value if your icon size differs. */
+/* Ensure the icon (the <i> element) is always visible */
 .social-media-icon ul li a i {
-	margin-left: 10px;
-	transition: margin-left 0.3s ease-out;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Label hidden initially */
+/* Initially hide the text label */
 .social-media-icon ul li a .social-media-icon-label {
-	opacity: 0;
-	margin-left: 8px;
-	white-space: nowrap;
-	transition: opacity 0.3s ease-out, margin-left 0.3s ease-out;
+  opacity: 0;
+  margin-left: 8px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
 }
 
-/* On hover, expand container and move icon left */
+/* On hover, expand the link and change text color */
 .social-media-icon ul li a:hover {
-	color: var(--primary);
-	width: 120px;
+  width: 140px; /* Adjust based on your text length */
+  color: var(--primary);
 }
 
-/* Fade in and position the label */
+/* Fade in the label text on hover */
 .social-media-icon ul li a:hover .social-media-icon-label {
-	opacity: 1;
-	margin-left: 8px;
+  opacity: 1;
 }
-
 
 .card-projects .project-item .image {
 	background-color: var(--background);
