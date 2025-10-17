@@ -49,7 +49,8 @@ class ProjectImage(models.Model):
         Project, on_delete=models.CASCADE, related_name="additional_images"
     )
     image = models.ImageField(
-        upload_to="project_images/additional_images",
+        storage=get_storage(),
+        upload_to="media/project_images/additional_images",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],

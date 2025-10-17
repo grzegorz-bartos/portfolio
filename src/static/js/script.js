@@ -98,4 +98,49 @@
 		},]
 	});
 
+	$(document).ready(function () {
+		const gallery = $('.project-gallery');
+		if (gallery.length) {
+			const items = gallery.find('.gallery-item');
+			const indicators = gallery.find('.indicator');
+			const prevBtn = gallery.find('.gallery-prev');
+			const nextBtn = gallery.find('.gallery-next');
+			let currentIndex = 0;
+			const totalItems = items.length;
+
+			function showImage(index) {
+				items.removeClass('active');
+				indicators.removeClass('active');
+				$(items[index]).addClass('active');
+				$(indicators[index]).addClass('active');
+				currentIndex = index;
+			}
+
+			prevBtn.on('click', function () {
+				const newIndex = (currentIndex - 1 + totalItems) % totalItems;
+				showImage(newIndex);
+			});
+
+			nextBtn.on('click', function () {
+				const newIndex = (currentIndex + 1) % totalItems;
+				showImage(newIndex);
+			});
+
+			indicators.on('click', function () {
+				const index = $(this).data('index');
+				showImage(index);
+			});
+
+			$(document).on('keydown', function (e) {
+				if (gallery.is(':visible')) {
+					if (e.key === 'ArrowLeft') {
+						prevBtn.click();
+					} else if (e.key === 'ArrowRight') {
+						nextBtn.click();
+					}
+				}
+			});
+		}
+	});
+
 })(jQuery);

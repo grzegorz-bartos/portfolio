@@ -2780,6 +2780,131 @@ p {
     display: none;
 }
 
-/*.profile-image {*/
-/*	margin-top: 50px;*/
-/*}*/
+.project-gallery {
+    margin: 24px 0;
+}
+
+.project-gallery .gallery-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.project-gallery .gallery-images {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--background);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.project-gallery .gallery-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.project-gallery .gallery-item.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.project-gallery .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.project-gallery .gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.project-gallery .gallery-nav:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.project-gallery .gallery-nav:hover svg path {
+    stroke: var(--white);
+}
+
+.project-gallery .gallery-nav svg path {
+    stroke: var(--black);
+    transition: stroke 0.3s ease;
+}
+
+.project-gallery .gallery-prev {
+    left: 16px;
+}
+
+.project-gallery .gallery-next {
+    right: 16px;
+}
+
+.project-gallery .gallery-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.project-gallery .gallery-indicators .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.project-gallery .gallery-indicators .indicator.active {
+    background-color: var(--primary);
+    width: 24px;
+    border-radius: 4px;
+}
+
+.project-gallery .gallery-indicators .indicator:hover {
+    background-color: var(--light-black);
+}
+
+.dark-theme .project-gallery .gallery-images {
+    background-color: var(--dark-theme-black);
+}
+
+.dark-theme .project-gallery .gallery-nav {
+    background-color: var(--dark-theme-bg);
+    border-color: var(--black);
+}
+
+.dark-theme .project-gallery .gallery-nav svg path {
+    stroke: var(--dark-theme-light-white);
+}
+
+.dark-theme .project-gallery .gallery-nav:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.dark-theme .project-gallery .gallery-nav:hover svg path {
+    stroke: var(--white);
+}

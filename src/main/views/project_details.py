@@ -20,10 +20,8 @@ class ProjectDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         project = self.object
 
-        # Additional images
-        context["additional_images"] = project.additional_images.all()[:2]
+        context["additional_images"] = project.additional_images.all()
 
-        # Services list formatting
         services_list = list(project.services.values_list("name", flat=True))
         if len(services_list) > 1:
             context["services_formatted"] = (
@@ -34,7 +32,6 @@ class ProjectDetailView(DetailView):
         else:
             context["services_formatted"] = None
 
-        # Previous and next project
         context["previous_project"] = (
             Project.objects.filter(id__lt=project.id).order_by("-id").first()
         )
