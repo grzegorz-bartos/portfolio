@@ -181,3 +181,6 @@ main/migrations/
 # Ignore media files
 media/
 /src/static/pdfs/resume.pdf
+
+# Claude Code documentation
+CLAUDE.md

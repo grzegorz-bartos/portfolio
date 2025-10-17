@@ -427,6 +427,7 @@ p {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	object-position: center 15%;
 }
 
 .profile-card .text {
@@ -558,7 +559,7 @@ p {
 /* Initially hide the text label */
 .social-media-icon ul li a .social-media-icon-label {
   opacity: 0;
-  margin-left: 8px;
+  margin-left: 10px;
   white-space: nowrap;
   transition: opacity 0.3s ease;
 }
@@ -2778,3 +2779,7 @@ p {
 .hidden {
     display: none;
 }
+
+/*.profile-image {*/
+/*	margin-top: 50px;*/
+/*}*/
