@@ -10,7 +10,7 @@ class ExpertArea(models.Model):
     )
     image = models.ImageField(
         storage=get_storage(),
-        upload_to="media/expert_area_icons",
+        upload_to="expert_area_icons",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],

@@ -13,7 +13,7 @@ class Project(models.Model):
     short_description = models.CharField(max_length=80, blank=True, null=True)
     image = models.ImageField(
         storage=get_storage(),
-        upload_to="media/project_images",
+        upload_to="project_images",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],
@@ -50,7 +50,7 @@ class ProjectImage(models.Model):
     )
     image = models.ImageField(
         storage=get_storage(),
-        upload_to="media/project_images/additional_images",
+        upload_to="project_images/additional_images",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],

@@ -18,7 +18,7 @@ class Article(models.Model):
     )
     image = models.FileField(
         storage=get_storage(),
-        upload_to="media/article_images",
+        upload_to="article_images",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],

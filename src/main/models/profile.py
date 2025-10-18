@@ -16,7 +16,7 @@ class Profile(models.Model):
 
     image = models.ImageField(
         storage=get_storage(),
-        upload_to="media/profile_images",
+        upload_to="profile_images",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],
@@ -24,7 +24,7 @@ class Profile(models.Model):
 
     resume = models.FileField(
         storage=get_storage(),
-        upload_to="media/pdfs",
+        upload_to="pdfs",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["pdf"])],

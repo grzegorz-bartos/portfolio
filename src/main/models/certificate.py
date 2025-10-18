@@ -19,7 +19,7 @@ class Certificate(models.Model):
     date_issued = models.DateField(blank=True, null=True)
     icon = models.FileField(
         storage=get_storage(),
-        upload_to="media/certification_icons",
+        upload_to="certification_icons",
         blank=True,
         null=True,
         validators=[FileExtensionValidator(["jpg", "png", "jpeg", "svg"])],
